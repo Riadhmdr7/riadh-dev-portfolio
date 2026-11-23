@@ -1,0 +1,2 @@
+# Add this project's dependencies here, pinned, e.g.
+# numpy==2.1.0

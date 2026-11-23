@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install tools
+        run: pip install ruff pytest
+
+      - name: Lint
+        run: ruff check .
+
+      - name: Test each project
+        run: |
+          status=0
+          for dir in templates/project projects/*/; do
+            [ -d "$dir/tests" ] || continue
+            echo "::group::$dir"
+            if [ -f "$dir/requirements.txt" ]; then pip install -r "$dir/requirements.txt"; fi
+            (cd "$dir" && pytest -q) || status=1
+            echo "::endgroup::"
+          done
+          exit $status
