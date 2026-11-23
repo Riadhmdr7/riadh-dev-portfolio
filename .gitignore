@@ -1,0 +1,45 @@
+# Secrets and local config
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Data and model files (keep them out of git; link to them instead)
+data/raw/
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.safetensors
+*.h5
+wandb/
+mlruns/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
